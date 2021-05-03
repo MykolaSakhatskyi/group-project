@@ -13,20 +13,35 @@ public class TextBoxPositiveTest extends TextBoxHelper {
     @Test
     public void TextBoxFirstTest(){
     WebElement fullName = driver.findElement(By.id("userName"));
+    WebElement email = driver.findElement(By.id("userEmail"));
+    WebElement currentAddress = driver.findElement(By.id("currentAddress"));
+    WebElement permanentAddress = driver.findElement(By.id("permanentAddress"));
     WebElement submitButton= driver.findElement(By.id("submit"));
 
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-    WebElement  resultName = driver.findElement(By.xpath("//button"));
-
-    String resultText = resultName.getAttribute("(\"Name:Ivan Ivanov\"");
-
-
     fullName.sendKeys("Ivan Ivanov");
-        submitButton.click();
+    email.sendKeys("ivanov@gmail.com");
+    currentAddress .sendKeys("Kyiv");
+    permanentAddress.sendKeys("London");
+    submitButton.click();
 
-        Assert.assertFalse(Boolean.parseBoolean(resultText));
+    WebElement resultName = driver.findElement(By.xpath("//p[@id='name']"));
+    WebElement resultEmail = driver.findElement(By.xpath("//p[@id='email']"));
+    WebElement resultCurrentAddress = driver.findElement(By.xpath("//p[@id='currentAddress']"));
+    WebElement resultPermanentAddress = driver.findElement(By.xpath("//p[@id='permanentAddress']"));
+
+    String resultText1 = resultName.getAttribute("(\"Name:Ivan Ivanov\"");
+    String resultText2 = resultEmail.getAttribute("(\"Email:ivanov@gmail.com\"");
+    String resultText3 = resultCurrentAddress.getAttribute("(\"Current Address :Kyiv\"");
+    String resultText4 = resultPermanentAddress.getAttribute("(\"Permanent Address :London\"");
+
+
+     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+    Assert.assertFalse(Boolean.parseBoolean(resultText1));
+    Assert.assertFalse(Boolean.parseBoolean(resultText2));
+    Assert.assertFalse(Boolean.parseBoolean(resultText3));
+    Assert.assertFalse(Boolean.parseBoolean(resultText4));
     }
-    
+
 
 }
