@@ -35,7 +35,7 @@ public class TextBoxPositiveTest extends TextBoxHelper {
     String resultText4 = resultPermanentAddress.getAttribute("(\"Permanent Address :London\"");
 
 
-     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     Assert.assertFalse(Boolean.parseBoolean(resultText1));
     Assert.assertFalse(Boolean.parseBoolean(resultText2));

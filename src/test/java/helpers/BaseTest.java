@@ -19,9 +19,9 @@ public abstract class BaseTest {
         driver.get("https://demoqa.com");
     }
 
-   // @AfterMethod
-    //public void endTest() {
-       // driver.quit();
+    @AfterMethod
+    public void endTest() {
+       driver.quit();
         //Testic A1234@!z
-    //}
+    }
 }
