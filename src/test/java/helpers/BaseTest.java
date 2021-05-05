@@ -21,7 +21,7 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void endTest() {
-       driver.quit();
+        driver.quit();
         //Testic A1234@!z
     }
 }
