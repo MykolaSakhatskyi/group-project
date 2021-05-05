@@ -6,8 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-
-public abstract class BaseTest {
+public abstract class TextBoxHelper {
 
     protected WebDriver driver;
 
@@ -16,12 +15,12 @@ public abstract class BaseTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://demoqa.com");
+        driver.get("https://demoqa.com/text-box");
     }
 
-    @AfterMethod
-    public void endTest() {
-       driver.quit();
-        //Testic A1234@!z
+   @AfterMethod
+   public void endTest() {
+        driver.quit();
+
     }
 }
