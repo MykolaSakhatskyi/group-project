@@ -18,6 +18,7 @@ public class MainPage extends ParentClass {
     public void clickBookStoreApplicationButton() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0, 800)");
+
         bookStoreApplicationButton.click();
     }
 }
