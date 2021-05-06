@@ -5,6 +5,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Iterator;
 import java.util.List;
@@ -34,6 +36,8 @@ public class ProfilePage extends ParentClass {
         super(driver);
     }
     public void openProfilePage() {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("window.scrollBy(0, 800)");
         profileButton.click();
     }
     public void loginLinkInProfile(){
@@ -49,7 +53,7 @@ public class ProfilePage extends ParentClass {
     }
     public void deleteAllBooksFromProfile(){
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 400)");
+        jse.executeScript("window.scrollBy(0, 800)");
         deleteBooksButton.click();
         String MainWindow=driver.getWindowHandle();
         Set<String> s1=driver.getWindowHandles();
@@ -58,6 +62,8 @@ public class ProfilePage extends ParentClass {
         {String ChildWindow= i1.next();
             driver.switchTo().window(ChildWindow);
             modalWindowOK.click();
+            WebDriverWait wait = new WebDriverWait(driver,5);
+            wait.until(ExpectedConditions.alertIsPresent());
             driver.switchTo().alert().accept();
         }
         driver.switchTo().window(MainWindow);

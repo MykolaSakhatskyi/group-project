@@ -19,6 +19,7 @@ public class ProfileGoToStoreBttnTest extends BaseTest {
 
         mainPage.clickBookStoreApplicationButton();
         profile.openProfilePage();
+        driver.manage().timeouts().implicitlyWait(3L, TimeUnit.SECONDS);
         profile.loginLinkInProfile();
         loginPage.login();
         driver.manage().timeouts().implicitlyWait(3L, TimeUnit.SECONDS);
