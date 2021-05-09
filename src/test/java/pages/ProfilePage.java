@@ -7,12 +7,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 public class ProfilePage extends ParentClass {
+    @FindBy(xpath = "//button[contains(text(),'Log out')]")
+    public WebElement logOutButton;
+    @FindBy(id = "delete-record-undefined")
+    private WebElement deleteButton;
+    @FindBy(id = "closeSmallModal-ok")
+    private WebElement deleteConfirmButton;
+    private final WebDriverWait wait = new WebDriverWait(driver,5);
     @FindBy(xpath = ".//span[text()='Profile']")
     private WebElement profileButton;
     @FindBy(xpath = ".//a[@href='/login']")
@@ -32,14 +38,26 @@ public class ProfilePage extends ParentClass {
     @FindBy(xpath = ".//button[contains(text(),'Back To Book Store')]")
     private WebElement backToBookStoreButton;
 
+
     public ProfilePage(WebDriver driver) {
         super(driver);
     }
+
     public void openProfilePage() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0, 800)");
         profileButton.click();
     }
+    public void deleteBook() {
+        wait.until(ExpectedConditions.elementToBeClickable(deleteButton));
+        deleteButton.click();
+    }
+
+    public void confirmDelete() {
+        wait.until(ExpectedConditions.elementToBeClickable(deleteConfirmButton));
+        deleteConfirmButton.click();
+    }
+
     public void loginLinkInProfile(){
         profileLoginUrl.click();
     }
@@ -68,4 +86,5 @@ public class ProfilePage extends ParentClass {
         }
         driver.switchTo().window(MainWindow);
     }
+
 }
