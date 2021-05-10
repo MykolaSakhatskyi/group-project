@@ -1,9 +1,12 @@
 package pages;
 
 import helpers.ParentClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends ParentClass {
 
@@ -47,6 +50,11 @@ public class LoginPage extends ParentClass {
 
     public WebElement getPasswordFieldEmpty() {
         return passwordFieldEmpty;
+    }
+
+    public void error() {
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("name")));
     }
 
     public WebElement getErrorMassage() {

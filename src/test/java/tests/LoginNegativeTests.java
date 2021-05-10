@@ -22,11 +22,9 @@ public class LoginNegativeTests extends BaseTest {
     public void loginWithDifferentUserNames(String username, String password, String passedValues) {
         MainPage mainPage = new MainPage(driver);
         mainPage.clickBookStoreApplicationButton();
-        //Assert.assertTrue(driver.getCurrentUrl().contains("books"),"Book page was not opened");
 
         BooksPage booksPage = new BooksPage(driver);
         booksPage.setLoginButton();
-        //Assert.assertTrue(driver.getCurrentUrl().contains("login"),"Login page was not opened");
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.setUsernameField(username);
@@ -39,9 +37,12 @@ public class LoginNegativeTests extends BaseTest {
             Assert.assertNotNull(loginPage.getUserNameFieldEmpty().isEnabled());
         else if (passedValues == "passwordFieldIsEmpty")
             Assert.assertNotNull(loginPage.getPasswordFieldEmpty().isEnabled());
-        else if (passedValues == "incorrectPassword")
-            Assert.assertEquals(loginPage.getErrorMassage().getText(),"Invalid username or password!");
-        else if (passedValues == "incorrectUsername")
-            Assert.assertEquals(loginPage.getErrorMassage().getText(),"Invalid username or password!");
+        else if (passedValues == "incorrectPassword") {
+            loginPage.error();
+            Assert.assertEquals(loginPage.getErrorMassage().getText(), "Invalid username or password!");
+        }
+        else if (passedValues == "incorrectUsername") {
+            loginPage.error();
+            Assert.assertEquals(loginPage.getErrorMassage().getText(), "Invalid username or password!"); }
     }
 }

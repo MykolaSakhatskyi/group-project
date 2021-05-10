@@ -1,6 +1,8 @@
 package tests;
 
 import helpers.BaseTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BooksPage;
@@ -23,7 +25,8 @@ public class LoginPositiveTest extends BaseTest {
         loginPage.setUsernameField("Testic");
         loginPage.setPasswordField("A1234@!z");
         loginPage.setLoginButton();
-        //Assert.assertTrue(driver.getCurrentUrl().contains("profile"),"Profile page was not opened");
-    }
 
+        WebElement profilePageName = driver.findElement(By.className("main-header"));
+        Assert.assertTrue(profilePageName.isDisplayed(),"Profile page was not opened");
+    }
 }
