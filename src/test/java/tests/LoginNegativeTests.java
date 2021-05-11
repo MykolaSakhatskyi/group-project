@@ -14,8 +14,8 @@ public class LoginNegativeTests extends BaseTest {
     private Object[][] valuesToEnter() {
         String password = "A1234@!z";
         String username = "Testic";
-        return new Object[][]{{"","","emptyFields"},{"",password,"usernameFieldIsEmpty"},{username,"","passwordFieldIsEmpty"},
-                {username,"wrong_password","incorrectPassword"},{"wrong_username",password,"incorrectUsername"}};
+        return new Object[][]{{"", "", "emptyFields"}, {"", password, "usernameFieldIsEmpty"}, {username, "", "passwordFieldIsEmpty"}, //новый объект лучше писать с новой строки, чтоб лучше читалось
+                {username, "wrong_password", "incorrectPassword"}, {"wrong_username", password, "incorrectUsername"}};
     }
 
     @Test(dataProvider = "valuesToEnter")
@@ -27,22 +27,26 @@ public class LoginNegativeTests extends BaseTest {
         booksPage.setLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.setUsernameField(username);
-        loginPage.setPasswordField(password);
+        loginPage.login(username, password);
         loginPage.clickLoginButton();
-        if (passedValues == "emptyFields") {
-            Assert.assertNotNull(loginPage.getUserNameFieldEmpty().isEnabled());
-            Assert.assertNotNull(loginPage.getPasswordFieldEmpty().isEnabled());}
-        else if (passedValues == "usernameFieldIsEmpty")
-            Assert.assertNotNull(loginPage.getUserNameFieldEmpty().isEnabled());
-        else if (passedValues == "passwordFieldIsEmpty")
-            Assert.assertNotNull(loginPage.getPasswordFieldEmpty().isEnabled());
-        else if (passedValues == "incorrectPassword") {
-            loginPage.waitingErrorMessage();
-            Assert.assertEquals(loginPage.getErrorMassage().getText(), "Invalid username or password!");
+        switch (passedValues) {
+            case "emptyFields":
+                Assert.assertTrue(loginPage.getUserNameFieldEmpty().isEnabled());
+                Assert.assertTrue(loginPage.getPasswordFieldEmpty().isEnabled());
+                break;
+            case "usernameFieldIsEmpty":
+                Assert.assertTrue(loginPage.getUserNameFieldEmpty().isEnabled());
+                break;
+            case "passwordFieldIsEmpty":
+                Assert.assertTrue(loginPage.getPasswordFieldEmpty().isEnabled());
+                break;
+            case "incorrectPassword":
+                loginPage.waitingErrorMessage();
+                Assert.assertEquals(loginPage.getErrorMassage().getText(), "Invalid username or password!");
+                break;
+            case "incorrectUsername":
+                loginPage.waitingErrorMessage();
+                Assert.assertEquals(loginPage.getErrorMassage().getText(), "Invalid username or password!");
         }
-        else if (passedValues == "incorrectUsername") {
-            loginPage.waitingErrorMessage();
-            Assert.assertEquals(loginPage.getErrorMassage().getText(), "Invalid username or password!"); }
     }
 }

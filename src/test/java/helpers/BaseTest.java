@@ -27,7 +27,7 @@ public abstract class BaseTest {
         driver.quit();
     }
 
-    public void clickAlert() {
+    protected void clickAlert() {
         WebDriverWait wait = new WebDriverWait(driver,5);
         wait.until(ExpectedConditions.alertIsPresent());
         driver.switchTo().alert().accept();

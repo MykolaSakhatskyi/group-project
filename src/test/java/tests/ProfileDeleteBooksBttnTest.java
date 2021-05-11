@@ -13,14 +13,13 @@ public class ProfileDeleteBooksBttnTest extends BaseTest {
     @Test
     public void deleteBooksButtonTest(){
         MainPage mainPage = new MainPage(driver);
-        ProfilePage profile = new ProfilePage(driver);
-        LoginPage loginPage = new LoginPage(driver);
-
         mainPage.clickBookStoreApplicationButton();
+
+        ProfilePage profile = new ProfilePage(driver);
         profile.openProfilePage();
         profile.loginLinkInProfile();
-        loginPage.login();
-        driver.manage().timeouts().implicitlyWait(3L, TimeUnit.SECONDS);
+
+        new LoginPage(driver).login(LoginPage.USERNAME, LoginPage.PASSWORD);
         profile.deleteAllBooksFromProfile();
 
 

@@ -13,16 +13,11 @@ public class ProfileGoToStoreBttnTest extends BaseTest {
 
     @Test
     public void profileButtonGoToStore() {
-        MainPage mainPage = new MainPage(driver);
+        new MainPage(driver).clickBookStoreApplicationButton();
         ProfilePage profile = new ProfilePage(driver);
-        LoginPage loginPage = new LoginPage(driver);
-
-        mainPage.clickBookStoreApplicationButton();
         profile.openProfilePage();
-        driver.manage().timeouts().implicitlyWait(3L, TimeUnit.SECONDS);
         profile.loginLinkInProfile();
-        loginPage.login();
-        driver.manage().timeouts().implicitlyWait(3L, TimeUnit.SECONDS);
+        new LoginPage(driver).login(LoginPage.USERNAME, LoginPage.PASSWORD);
         profile.goToBookstoreButton();
 
         Assert.assertTrue(driver.getCurrentUrl().contentEquals("https://demoqa.com/books"));

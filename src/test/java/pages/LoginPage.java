@@ -12,24 +12,34 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class LoginPage extends ParentClass {
 
+    public static final String USERNAME = "Testic";
+    public static final String PASSWORD = "A1234@!z";
+
+    @SuppressWarnings({"unused", "using for page factory"})
     @FindBy(id = "userName")
     private WebElement userNameField;
 
+    @SuppressWarnings({"unused", "using for page factory"})
     @FindBy(xpath = "//input[@class='mr-sm-2 is-invalid form-control'][@id='userName']")
-    public WebElement userNameFieldEmpty;
+    private WebElement userNameFieldEmpty;
 
+    @SuppressWarnings({"unused", "using for page factory"})
     @FindBy(id = "password")
     private WebElement passwordField;
 
+    @SuppressWarnings({"unused", "using for page factory"})
     @FindBy(xpath = "//input[@class='mr-sm-2 is-invalid form-control'][@id='password']")
     private WebElement passwordFieldEmpty;
 
+    @SuppressWarnings({"unused", "using for page factory"})
     @FindBy(id = "login")
     private WebElement loginButton;
 
+    @SuppressWarnings({"unused", "using for page factory"})
     @FindBy(id = "name")
     private WebElement errorMassage;
 
+    @SuppressWarnings({"unused", "using for page factory"})
     @FindBy(id = "newUser")
     private WebElement newUserButton;
 
@@ -39,12 +49,12 @@ public class LoginPage extends ParentClass {
 
     private WebDriverWait wait = new WebDriverWait(driver,5);
 
-    public void login() {
+    public void login(String username, String password) {
         ProfilePage profilePage = new ProfilePage(driver);
-        userNameField.sendKeys("Testic");
-        passwordField.sendKeys("A1234@!z");
+        userNameField.sendKeys(username);
+        passwordField.sendKeys(password);
         loginButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(profilePage.logOutButton));
+        wait.until(ExpectedConditions.elementToBeClickable(profilePage.getLogoutButton()));
         assertTrue(driver.getCurrentUrl().contains("/profile"));
     }
 
@@ -67,14 +77,6 @@ public class LoginPage extends ParentClass {
 
     public WebElement getNewUserButton() {
         return newUserButton;
-    }
-
-    public void setUsernameField(String username) {
-        userNameField.sendKeys(username);
-    }
-
-    public void setPasswordField(String password) {
-        passwordField.sendKeys(password);
     }
 
     public void clickLoginButton() {
