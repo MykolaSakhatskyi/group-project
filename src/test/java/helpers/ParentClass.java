@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 
-public abstract class ParentClass {
+public abstract class ParentClass { // ParentClass - не очень хорошее название, родительский класс чего? Лучше назвать ParentPageClass или BasePage
     protected WebDriver driver;
 
     protected ParentClass(WebDriver driver) {
