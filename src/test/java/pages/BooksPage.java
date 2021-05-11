@@ -22,7 +22,7 @@ public class BooksPage extends ParentClass {
     @FindBy(xpath = "//span[text()='Profile']")
     private WebElement profileButton;
 
-    private WebDriverWait wait = new WebDriverWait(driver,5);
+    private WebDriverWait wait = new WebDriverWait(driver, 5);
 
     public BooksPage(WebDriver driver) {
         super(driver);
@@ -34,7 +34,7 @@ public class BooksPage extends ParentClass {
 
     public void clickBookStoreButton() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 801)");
+        jse.executeScript("window.scrollBy(0, 801)"); // Лучше скролить не по размеру экрана, а к элементу, если завтра поменяется расположение кнопки, то тест упадет.
         bookStoreButton.click();
     }
 

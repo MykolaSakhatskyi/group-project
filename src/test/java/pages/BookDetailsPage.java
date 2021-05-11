@@ -17,7 +17,7 @@ public class BookDetailsPage extends ParentClass {
 
     public void clickAddToYourCollectionButton() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 801)");
+        jse.executeScript("window.scrollBy(0, 801)"); // Перед тем как скролить, я бы сделал проверку на то, что кнопка видима, нет смысла выполнять это действие, если у нас сайт открыт на весь экран и кнопка видна
         addToYourCollectionButton.click();
     }
 }

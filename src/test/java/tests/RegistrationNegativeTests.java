@@ -35,13 +35,13 @@ public class RegistrationNegativeTests extends BaseTest {
 
         RegisterPage registerPage = new RegisterPage(driver);
 
-        if (passedValues == "BackToLogin") {
+        if (passedValues == "BackToLogin") { // лучше использовать свитч кейс. А так же "==" работает со строками другим способом, нужно юзать equals. "==" указывает, что обе ссылки ссылкаются на 1 и тот же объект, а не его содержание. В данном случае все работает, так как компилятор "умный" и создал 1 объект для этой строки и соответственно, тест проходит. Но если создать новую строку String("текст"), то он упадет. Или если значение будет браться с сайта, например.
             registerPage.getBackToLoginButton().click();
             Assert.assertTrue(driver.getCurrentUrl().contains("login"),"Back to Login button doesn't open Login page");
             }
         else if (passedValues == "GetAllErrorsFields") {
             registerPage.getRegisterButton().click();
-            Assert.assertNotNull(registerPage.getFirsNameFieldEmpty().isEnabled());
+            Assert.assertNotNull(registerPage.getFirsNameFieldEmpty().isEnabled()); // Проверка на null? Тут необходимо проверить тру или фолс, но никак не налл. Если у нас объект будет налл, то тест упадет в любом случае, так как из него пытается вытащить булевое значение
             Assert.assertNotNull(registerPage.getLastNameFieldEmpty().isEnabled());
             Assert.assertNotNull(registerPage.getUserNameFieldEmpty().isEnabled());
             Assert.assertNotNull(registerPage.getPasswordFieldEmpty().isEnabled());
