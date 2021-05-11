@@ -25,7 +25,6 @@ public abstract class BaseTest {
     @AfterMethod
     public void endTest() {
         driver.quit();
-        //Testic A1234@!z
     }
 
     public void clickAlert() {
