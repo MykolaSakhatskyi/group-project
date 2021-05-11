@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class ProfilePage extends ParentClass {
     @FindBy(xpath = "//button[contains(text(),'Log out')]")
-    public WebElement logOutButton;
+    public WebElement logOutButton; // public -> private
     @FindBy(id = "delete-record-undefined")
     private WebElement deleteButton;
     @FindBy(id = "closeSmallModal-ok")
@@ -45,7 +45,7 @@ public class ProfilePage extends ParentClass {
 
     public void openProfilePage() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 800)");
+        jse.executeScript("window.scrollBy(0, 800)"); // Лучше скролить не по размеру экрана, а к элементу, если завтра поменяется расположение кнопки, то тест упадет.
         profileButton.click();
     }
     public void deleteBook() {
@@ -66,17 +66,17 @@ public class ProfilePage extends ParentClass {
     }
     public void goToBookstoreButton(){
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 400)");
+        jse.executeScript("window.scrollBy(0, 400)"); // Лучше скролить не по размеру экрана, а к элементу, если завтра поменяется расположение кнопки, то тест упадет.
         goToBookstoreButton.click();
     }
     public void deleteAllBooksFromProfile(){
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 800)");
+        jse.executeScript("window.scrollBy(0, 800)"); // Лучше скролить не по размеру экрана, а к элементу, если завтра поменяется расположение кнопки, то тест упадет.
         deleteBooksButton.click();
         String MainWindow=driver.getWindowHandle();
         Set<String> s1=driver.getWindowHandles();
         Iterator<String> i1= s1.iterator();
-        while (i1.hasNext())
+        while (i1.hasNext()) // лучше использовать forEach, IntelliJ IDEA подсказывает об этом сама
         {String ChildWindow= i1.next();
             driver.switchTo().window(ChildWindow);
             modalWindowOK.click();

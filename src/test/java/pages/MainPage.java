@@ -17,7 +17,7 @@ public class MainPage extends ParentClass {
 
     public void clickBookStoreApplicationButton() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 800)");
+        jse.executeScript("window.scrollBy(0, 800)"); // Лучше скролить не по размеру экрана, а к элементу, если завтра поменяется расположение кнопки, то тест упадет.
         bookStoreApplicationButton.click();
     }
 }

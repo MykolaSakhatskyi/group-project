@@ -14,7 +14,7 @@ public class LoginNegativeTests extends BaseTest {
     private Object[][] valuesToEnter() {
         String password = "A1234@!z";
         String username = "Testic";
-        return new Object[][]{{"","","emptyFields"},{"",password,"usernameFieldIsEmpty"},{username,"","passwordFieldIsEmpty"},
+        return new Object[][]{{"","","emptyFields"},{"",password,"usernameFieldIsEmpty"},{username,"","passwordFieldIsEmpty"}, //новый объект лучше писать с новой строки, чтоб лучше читалось
                 {username,"wrong_password","incorrectPassword"},{"wrong_username",password,"incorrectUsername"}};
     }
 
@@ -30,18 +30,18 @@ public class LoginNegativeTests extends BaseTest {
         loginPage.setUsernameField(username);
         loginPage.setPasswordField(password);
         loginPage.clickLoginButton();
-        if (passedValues == "emptyFields") {
-            Assert.assertNotNull(loginPage.getUserNameFieldEmpty().isEnabled());
+        if (passedValues.equals("emptyFields")) { // лучше использовать свитч кейс. А так же "==" работает со строками другим способом, нужно юзать equals. "==" указывает, что обе ссылки ссылкаются на 1 и тот же объект, а не его содержание. В данном случае все работает, так как компилятор "умный" и создал 1 объект для этой строки и соответственно, тест проходит. Но если создать новую строку String("текст"), то он упадет. Или если значение будет браться с сайта, например.
+            Assert.assertNotNull(loginPage.getUserNameFieldEmpty().isEnabled()); // Проверка на null? Тут необходимо проверить тру или фолс, но никак не налл. Если у нас объект будет налл, то тест упадет в любом случае, так как из него пытается вытащить булевое значение
             Assert.assertNotNull(loginPage.getPasswordFieldEmpty().isEnabled());}
-        else if (passedValues == "usernameFieldIsEmpty")
+        else if (passedValues.equals("usernameFieldIsEmpty"))
             Assert.assertNotNull(loginPage.getUserNameFieldEmpty().isEnabled());
-        else if (passedValues == "passwordFieldIsEmpty")
+        else if (passedValues.equals("passwordFieldIsEmpty"))
             Assert.assertNotNull(loginPage.getPasswordFieldEmpty().isEnabled());
-        else if (passedValues == "incorrectPassword") {
+        else if (passedValues.equals("incorrectPassword")) {
             loginPage.waitingErrorMessage();
             Assert.assertEquals(loginPage.getErrorMassage().getText(), "Invalid username or password!");
         }
-        else if (passedValues == "incorrectUsername") {
+        else if (passedValues.equals("incorrectUsername")) {
             loginPage.waitingErrorMessage();
             Assert.assertEquals(loginPage.getErrorMassage().getText(), "Invalid username or password!"); }
     }

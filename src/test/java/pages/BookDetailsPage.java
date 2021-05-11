@@ -17,7 +17,7 @@ public class BookDetailsPage extends ParentClass {
 
     public void clickAddToYourCollectionButton() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 801)");
+        jse.executeScript("arguments[0].scrollIntoView();", addToYourCollectionButton); // Лучше скролить не по размеру экрана, а к элементу, если завтра поменяется расположение кнопки, то тест упадет
         addToYourCollectionButton.click();
     }
 }

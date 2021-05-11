@@ -97,10 +97,10 @@ public class RegisterPage extends ParentClass {
     }
 
     public void switchToCaptchaFrame() {
-        WebDriver captchaFrame = driver.switchTo().frame(0);
+        WebDriver captchaFrame = driver.switchTo().frame(0); // Не понимаю, для чего присваетвается новый драйвер, если он нигде не используется
     }
 
     public void switchToMainWindow() {
-        WebDriver mainWindow = driver.switchTo().parentFrame();
+        WebDriver mainWindow = driver.switchTo().parentFrame(); // Не понимаю, для чего присваетвается новый драйвер, если он нигде не используется
     }
 }
