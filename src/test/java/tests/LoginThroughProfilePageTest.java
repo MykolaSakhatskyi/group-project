@@ -20,16 +20,16 @@ public class LoginThroughProfilePageTest extends BaseTest {
 
     @Test
     public void LoginAtProfilePageTest(){
-        MainPage mainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage(driver); // mainPage используется лишь раз, можно не выносить ее в отдельную переменную
         ProfilePage profile = new ProfilePage(driver);
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver); // loginPage используется лишь раз, можно не выносить ее в отдельную переменную
 
         mainPage.clickBookStoreApplicationButton();
         profile.openProfilePage();
         profile.loginLinkInProfile();
         loginPage.login();
 
-        driver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS); // implicitlyWait снова, его не нужно так использовать, он не для явных ожиданий :)
         WebElement logoutButton = driver.findElement(By.xpath(".//button[contains(text(),'Log out')]"));
         Assert.assertTrue(logoutButton.isDisplayed());
     }
