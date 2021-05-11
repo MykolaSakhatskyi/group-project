@@ -13,8 +13,8 @@ public class ProfileDeleteBooksBttnTest extends BaseTest {
     @Test
     public void deleteBooksButtonTest(){
         MainPage mainPage = new MainPage(driver);
-        ProfilePage profile = new ProfilePage(driver);
-        LoginPage loginPage = new LoginPage(driver);
+        ProfilePage profile = new ProfilePage(driver); // Я бы объявлял эти переменные непосредственно перед их вызовом
+        LoginPage loginPage = new LoginPage(driver); // а не вначале теста
 
         mainPage.clickBookStoreApplicationButton();
         profile.openProfilePage();

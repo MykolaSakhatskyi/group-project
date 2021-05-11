@@ -33,8 +33,10 @@ public class BooksPage extends ParentClass {
     }
 
     public void clickBookStoreButton() {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 801)");
+        if (!bookStoreButton.isDisplayed()) {
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+            jse.executeScript("window.scrollBy(0, 801)"); // Лучше скролить не по размеру экрана, а к элементу, если завтра поменяется расположение кнопки, то тест упадет.
+        }
         bookStoreButton.click();
     }
 

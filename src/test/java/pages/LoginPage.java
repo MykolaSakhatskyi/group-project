@@ -16,7 +16,7 @@ public class LoginPage extends ParentClass {
     private WebElement userNameField;
 
     @FindBy(xpath = "//input[@class='mr-sm-2 is-invalid form-control'][@id='userName']")
-    public WebElement userNameFieldEmpty;
+    public WebElement userNameFieldEmpty; // public -> private
 
     @FindBy(id = "password")
     private WebElement passwordField;
@@ -39,7 +39,7 @@ public class LoginPage extends ParentClass {
 
     private WebDriverWait wait = new WebDriverWait(driver,5);
 
-    public void login() {
+    public void login() { // Все же лучше создать 1 метод, который бы принимал разные логин и пароль, а не захардкоженый
         ProfilePage profilePage = new ProfilePage(driver);
         userNameField.sendKeys("Testic");
         passwordField.sendKeys("A1234@!z");
