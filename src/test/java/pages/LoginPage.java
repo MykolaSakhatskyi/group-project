@@ -28,6 +28,9 @@ public class LoginPage extends ParentClass {
     @FindBy(id = "name")
     private WebElement errorMassage;
 
+    @FindBy(id = "newUser")
+    private WebElement newUserButton;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -52,12 +55,16 @@ public class LoginPage extends ParentClass {
         return passwordFieldEmpty;
     }
 
-    public void error() {
+    public void waitingErrorMessage() {
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("name")));
     }
 
     public WebElement getErrorMassage() {
         return errorMassage;
+    }
+
+    public WebElement getNewUserButton() {
+        return newUserButton;
     }
 }

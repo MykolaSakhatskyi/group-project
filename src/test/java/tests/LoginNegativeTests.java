@@ -38,11 +38,11 @@ public class LoginNegativeTests extends BaseTest {
         else if (passedValues == "passwordFieldIsEmpty")
             Assert.assertNotNull(loginPage.getPasswordFieldEmpty().isEnabled());
         else if (passedValues == "incorrectPassword") {
-            loginPage.error();
+            loginPage.waitingErrorMessage();
             Assert.assertEquals(loginPage.getErrorMassage().getText(), "Invalid username or password!");
         }
         else if (passedValues == "incorrectUsername") {
-            loginPage.error();
+            loginPage.waitingErrorMessage();
             Assert.assertEquals(loginPage.getErrorMassage().getText(), "Invalid username or password!"); }
     }
 }
