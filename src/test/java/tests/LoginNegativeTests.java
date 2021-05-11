@@ -29,7 +29,7 @@ public class LoginNegativeTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.setUsernameField(username);
         loginPage.setPasswordField(password);
-        loginPage.setLoginButton();
+        loginPage.clickLoginButton();
         if (passedValues == "emptyFields") {
             Assert.assertNotNull(loginPage.getUserNameFieldEmpty().isEnabled());
             Assert.assertNotNull(loginPage.getPasswordFieldEmpty().isEnabled());}

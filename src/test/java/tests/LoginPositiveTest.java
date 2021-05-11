@@ -24,7 +24,7 @@ public class LoginPositiveTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.setUsernameField("Testic");
         loginPage.setPasswordField("A1234@!z");
-        loginPage.setLoginButton();
+        loginPage.clickLoginButton();
 
         WebElement profilePageName = driver.findElement(By.className("main-header"));
         Assert.assertTrue(profilePageName.isDisplayed(),"Profile page was not opened");

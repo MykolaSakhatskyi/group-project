@@ -43,15 +43,6 @@ public class LoginPage extends ParentClass {
         ProfilePage profilePage = new ProfilePage(driver);
         userNameField.sendKeys("Testic");
         passwordField.sendKeys("A1234@!z");
-    public void setUsernameField(String username) {
-        userNameField.sendKeys(username);
-    }
-
-    public void setPasswordField(String password) {
-        passwordField.sendKeys(password);
-    }
-
-    public void setLoginButton() {
         loginButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(profilePage.logOutButton));
         assertTrue(driver.getCurrentUrl().contains("/profile"));
@@ -76,5 +67,17 @@ public class LoginPage extends ParentClass {
 
     public WebElement getNewUserButton() {
         return newUserButton;
+    }
+
+    public void setUsernameField(String username) {
+        userNameField.sendKeys(username);
+    }
+
+    public void setPasswordField(String password) {
+        passwordField.sendKeys(password);
+    }
+
+    public void clickLoginButton() {
+        loginButton.click();
     }
 }
