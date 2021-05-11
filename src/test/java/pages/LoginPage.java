@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 public class LoginPage extends ParentClass {
 
     @FindBy(id = "userName")
@@ -35,6 +37,12 @@ public class LoginPage extends ParentClass {
         super(driver);
     }
 
+    private WebDriverWait wait = new WebDriverWait(driver,5);
+
+    public void login() {
+        ProfilePage profilePage = new ProfilePage(driver);
+        userNameField.sendKeys("Testic");
+        passwordField.sendKeys("A1234@!z");
     public void setUsernameField(String username) {
         userNameField.sendKeys(username);
     }
@@ -45,6 +53,8 @@ public class LoginPage extends ParentClass {
 
     public void setLoginButton() {
         loginButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(profilePage.logOutButton));
+        assertTrue(driver.getCurrentUrl().contains("/profile"));
     }
 
     public WebElement getUserNameFieldEmpty() {
