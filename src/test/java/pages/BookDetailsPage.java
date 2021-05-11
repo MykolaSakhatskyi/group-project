@@ -1,13 +1,13 @@
 package pages;
 
 import helpers.ParentClass;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
 public class BookDetailsPage extends ParentClass {
+    @SuppressWarnings({"unused", "using for page factory"})
     @FindBy(xpath = "//button[contains(text(),'Add To Your Collection')]")
     private WebElement addToYourCollectionButton;
 
@@ -16,8 +16,7 @@ public class BookDetailsPage extends ParentClass {
     }
 
     public void clickAddToYourCollectionButton() {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 801)"); // Перед тем как скролить, я бы сделал проверку на то, что кнопка видима, нет смысла выполнять это действие, если у нас сайт открыт на весь экран и кнопка видна
+        scrollToElement(addToYourCollectionButton);
         addToYourCollectionButton.click();
     }
 }

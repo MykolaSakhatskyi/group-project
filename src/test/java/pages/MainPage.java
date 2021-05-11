@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MainPage extends ParentClass {
-
+    @SuppressWarnings({"unused", "using for page factory"})
     @FindBy(xpath = "//h5[text()='Book Store Application']")
     private WebElement bookStoreApplicationButton;
 
@@ -16,8 +16,7 @@ public class MainPage extends ParentClass {
     }
 
     public void clickBookStoreApplicationButton() {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, 800)"); // Лучше скролить не по размеру экрана, а к элементу, если завтра поменяется расположение кнопки, то тест упадет.
+        scrollToElement(bookStoreApplicationButton);
         bookStoreApplicationButton.click();
     }
 }

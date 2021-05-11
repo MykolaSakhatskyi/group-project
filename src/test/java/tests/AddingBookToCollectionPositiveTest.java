@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import pages.*;
 
 public class AddingBookToCollectionPositiveTest extends BaseTest {
+
     @Test
     public void addingBookToCollectionTest() {
         MainPage mainPage = new MainPage(driver);
@@ -14,7 +15,7 @@ public class AddingBookToCollectionPositiveTest extends BaseTest {
         booksPage.setLoginButton();
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login();
+        loginPage.login(LoginPage.USERNAME, LoginPage.PASSWORD);
 
         booksPage.clickBookStoreButton();
         booksPage.chooseTheBook();
